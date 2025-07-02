@@ -64,6 +64,7 @@ const callbackDefinitions = {
   onPlayerChat: { returns: [false, null, "object", "string"] }
 };
 ```
+Most callbacks that have a return value are already added, so you just add them in the format `callback: {returns: false }`.
 
 #### `registeredCallbacks`
 
@@ -77,6 +78,7 @@ const registeredCallbacks = {
   playerLeave: []
 };
 ```
+If you want to add a callback, add it in the form `callback: []`
 
 ### Important Rules
 
@@ -308,7 +310,7 @@ writeCodeToChest(
 ```js
 writeCodeToChest(
   [thisPos[0], thisPos[1] + 1, thisPos[2]],
-  `globalDataStore.testData = ${JSON.stringify({
+  `globalDataStore.testData = {
     messages: {
       welcomeMessage: "hello!",
       goodbyeMessage: "See you next time!",
@@ -316,7 +318,7 @@ writeCodeToChest(
       successMessage: "Operation completed successfully.",
       infoMessage: "This is an informational message"
     }
-  })};`,
+  };`,
   {
     Creator: "kentaki",
     codeName: "testdata",
@@ -334,14 +336,8 @@ Please enter the data in this format
 writeCodeToChest(
   [thisPos[0], thisPos[1]+1, thisPos[2]],
   `
-  globalDataStore.testdata = {
-    messages: {
-      welcomeMessage: "hello!",
-      goodbyeMessage: "See you next time!",
-      errorMessage: "An error has occurred.",
-      successMessage: "Operation completed successfully.",
-      infoMessage: "This is an informational message."
-    }
+  globalDataStore./*Please change it to the appropriate name*/ = {
+    /*Place objects here.*/
   };
   `,
   {
