@@ -2,6 +2,9 @@
 
 This script allows you to load and execute code dynamically from a chest in Bloxd.
 
+The current version may stop working properly in the future!
+This project uses translation, so the English may not be perfectly accurate!
+
 ## Features
 
 * Execute code stored in chests
