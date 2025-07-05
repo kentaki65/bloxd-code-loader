@@ -32,11 +32,13 @@ This system provides functionality to manage structured data stored in chests, k
 ### Available Functions
 
 * `readDataCode(codeName)`
-  Reads the loaded data for the specified code name. Returns the data object or `null` if not loaded.
+Reads the loaded data with the specified code name. Returns `null` if not loaded.
+You can check the structure of the object. However, the returned type is a string, so it's honestly not useful.
 
 * `accessDataCode(codeName, path)`
   Accesses a specific nested value within a data code.
   Supports dot and bracket notation in the path (e.g., `"stats.points"` or `"items[0].name"`).
+  The returned type is an object, so `object.keys`, `object.values` etc. are available.
 
 * `setDataCodeValue(codeName, path, value)`
   Updates a value within the data code and writes the changes back to the associated chest slots.
@@ -154,11 +156,13 @@ registerCallbacks("コード名", callbacksToRegister);
 * Must be a **2D array** like `[[thisPos[0], thisPos[1] + 1, thisPos[2]]]`.
 * Do **not** change this structure manually. Incorrect formats may break loader functionality.
 
+---
+
 ### Unicode Encoding
 
-* The last parameter controls Unicode encoding.
-* **Keep it `false` unless you fully understand the risks.**
-* Enabling it may cause unexpected errors in some cases.
+* The last parameter controls the Unicode encoding.
+* For `auto` type code, **`false` is recommended**.
+* For `data` type code, **`true` is recommended**.
 
 ---
 ### Known Defects
@@ -313,15 +317,13 @@ writeCodeToChest(
 ```js
 writeCodeToChest(
   [thisPos[0], thisPos[1] + 1, thisPos[2]],
-  `globalDataStore.testData = {
-    messages: {
-      welcomeMessage: "hello!",
-      goodbyeMessage: "See you next time!",
-      errorMessage: "eee",
-      successMessage: "Operation completed successfully.",
-      infoMessage: "This is an informational message"
-    }
-  };`,
+  JSON.stringify({
+	  messages: {
+	    welcomeMessage: "hello!",
+	    goodbyeMessage: "bye!",
+	    errorMessage: "oops"
+	  }
+  }),
   {
     Creator: "kentaki",
     codeName: "testdata",
@@ -329,8 +331,9 @@ writeCodeToChest(
     codeType: "data"
   },
   myId,
-  false
+  true
 );
+
 ```
 Please enter the data in this format
 <details> <summary>This is a template for data definition code(Click to open)</summary>
@@ -338,11 +341,7 @@ Please enter the data in this format
 ```js
 writeCodeToChest(
   [thisPos[0], thisPos[1]+1, thisPos[2]],
-  `
-  globalDataStore./*Please change it to the appropriate name*/ = {
-    /*Place objects here.*/
-  };
-  `,
+  JSON.stringify({/*Put your object data here*/}),
   {
     Creator: "kentaki",
     codeName: "testdata",
@@ -350,7 +349,7 @@ writeCodeToChest(
     codeType: "data"
   },
   myId,
-  false
+  true
 );
 ```
 </details>
