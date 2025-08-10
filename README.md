@@ -23,6 +23,14 @@ This project uses translation, so the English may not be perfectly accurate!
 * Redistribution or public sharing of the code is **prohibited**.
 * For personal, in-game use only.
 
+## 著作物利用許諾
+
+* 本コードは著作権法により保護されています。利用者は、以下に定める条件を厳守するものとします。
+  ### 1. 改変禁止の範囲:
+  - registeredCallbacks および callbackDefinitions の2つの変数を除き、コード本体、コメント、表示される文字列、色、その他一切の要素に対する変更、修正、または改変を禁止します。
+  ### 2.著作権侵害に関する警告:
+  - 上記に定める改変禁止の範囲に違反した場合、著作権侵害となります。著作権侵害は、法的な責任を問われることになります。
+
 ---
 
 ## Data Code Management
