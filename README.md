@@ -48,15 +48,7 @@ You can check the structure of the object. However, the returned type is a strin
   Supports dot and bracket notation in the path (e.g., `"stats.points"` or `"items[0].name"`).
   The returned type is an object, so `object.keys`, `object.values` etc. are available.
 
-* `setDataCodeValue(codeName, path, value)`
-  Updates a value within the data code and writes the changes back to the associated chest slots.
-  Returns `true` on success, `false` if the data is not loaded or an error occurs.
-
-> **Note:**
-> You can also access data like this:
-> `globalDataStore.hogehoge`
-> The globalDataStore contains the values ​​read from the data code.
-> But for safe modification and proper chest synchronization, always use `setDataCodeValue`.
+* setDataCodeValue has been removed
 
 ---
 
@@ -156,9 +148,6 @@ writeCodeToChest(
 registerCallbacks("コード名", callbacksToRegister);
 ```
 
-* Data can be accessed directly via `globalDataStore`,
-  but for reliable updates, use `setDataCodeValue`.
-
 ### SaveDestination Rules
 
 * Must be a **2D array** like `[[thisPos[0], thisPos[1] + 1, thisPos[2]]]`.
@@ -171,16 +160,7 @@ registerCallbacks("コード名", callbacksToRegister);
 * The last parameter controls the Unicode encoding.
 * For `auto` type code, **`false` is recommended**.
 * For `data` type code, **`true` is recommended**.
-
----
-### Known Defects
-
-- Issue with onPlayerJoin callback not being executed when a player enters the lobby when there is no one in the lobby.
-- 
-  
-*I haven't actually written any long code, so I'm sure there are many other bugs besides the ones mentioned above.*
-
-
+* 
 ---
 
 # Bloxd Code Loader - Usage Examples
@@ -376,7 +356,6 @@ writeCodeToChest(
   const welcomeMessage = accessDataCode("testdata", "messages.welcomeMessage");
   api.log(welcomeMessage); // logs "hello!"
 
-  setDataCodeValue("testdata", "messages.errorMessage", "An error has occurred");
   `,
   {
     Creator: "kentaki",
